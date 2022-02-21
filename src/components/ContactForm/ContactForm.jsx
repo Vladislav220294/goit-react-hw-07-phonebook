@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
-import contactsActions from '../../redux/actions'
+import {addContact} from '../../redux/operations'
 import s from './ContactForm.module.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -12,7 +12,7 @@ const ContactForm = () => {
 
   const contacts = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
-  const addContact = (newContact)=> dispatch(contactsActions.addContact(newContact))
+  const handleAddContact = (newContact)=> dispatch(addContact(newContact))
 
   const handleInputChange = event => {
     const { name, value } = event.currentTarget;
@@ -41,7 +41,7 @@ const ContactForm = () => {
       reset();
       return alert(`${newContact.name} is already in contacts`);
     }
-    addContact(newContact);
+    handleAddContact(newContact);
     reset();
   };
   const reset = () => {

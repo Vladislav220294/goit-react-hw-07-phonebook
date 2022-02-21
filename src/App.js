@@ -1,9 +1,16 @@
+import { useDispatch } from 'react-redux';
 import './App.css';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
+import { getContacts } from './redux/operations';
+import { useEffect } from 'react';
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getContacts());
+  }, [dispatch]);
   return (
     <div className="App">
       <h1>Phonebook</h1>

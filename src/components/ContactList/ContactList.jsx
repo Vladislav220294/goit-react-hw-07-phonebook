@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import contactsActions from '../../redux/actions';
+import { removeContact } from '../../redux/operations';
+// import contactsActions from '../../redux/actions';
 import s from './ContactList.module.css';
 
 const ContactList = () => {
@@ -9,7 +10,7 @@ const ContactList = () => {
     contact.name.toLowerCase().includes(filter.toLowerCase()));
   
   const dispatch = useDispatch();
-  const removeContact =  id => dispatch(contactsActions.removeContact(id))
+  const handleRemoveContact =  id => dispatch(removeContact(id))
   return (
     <ul className={s.list}>
       {visibleContacts.map(el => (
@@ -19,7 +20,7 @@ const ContactList = () => {
           <button
             className={s.buttom}
             type="button"
-            onClick={() => removeContact(el.id)}
+            onClick={() => handleRemoveContact(el.id)}
           >
             Delete
           </button>
